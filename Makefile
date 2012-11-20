@@ -12,4 +12,4 @@ reqirements: environment
 	$(PIP_BIN) install -r requirements.txt
 
 test: reqirements
-	$(PYTHON_BIN) skeleton/tests.py
+	$(PYTHON_BIN) skeleton/tests/runtests.py
