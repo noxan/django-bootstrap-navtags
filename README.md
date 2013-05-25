@@ -1,38 +1,21 @@
-django-skeleton
-===============
+# django-bootstrapnavtags
 
-skeleton for new django applications.
-
-All following sections are just dummies and may not work as excepted.
-
-## Key features
-
-* Reusable skeleton for new apps
-* ...
+Navigation templatetags for django with twitter bootstrap.
 
 ## Installation
 
 If you want to install the latest stable release from PyPi:
 
-    $ pip install django-skeleton
-  
+    $ pip install django-bootstrap-navtags
+
 If you want to install the latest development version from GitHub:
 
-    $ pip install -e git://github.com/byteweaver/django-skeleton#egg=django-skeleton
+    $ pip install -e git://github.com/noxan/django-bootstrap-navtags#egg=django-bootstrapnavtags
 
-Add `skeleton` to your `INSTALLED_APPS`:
+Add `bootstrapnavtags` to your `INSTALLED_APPS`:
 
     INSTALLED_APPS = (
         ...
-        'skeleton',
+        'bootstrapnavtags',
         ...
     )
-
-Hook this app into your ``urls.py``:
-
-    urlpatterns = patterns('',
-        ...
-        url(r'^your-url/$', include('skeleton.urls')),
-        ...
-    )
-

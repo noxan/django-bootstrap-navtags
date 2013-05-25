@@ -22,7 +22,7 @@ EXTERNAL_APPS = [
 ]
 INTERNAL_APPS = [
     'django_nose',
-    'skeleton',
+    'bootstrapnavtags',
 ]
 INSTALLED_APPS = EXTERNAL_APPS + INTERNAL_APPS
 COVERAGE_MODULE_EXCLUDES = [
