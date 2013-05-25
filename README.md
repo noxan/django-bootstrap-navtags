@@ -19,3 +19,9 @@ Add `bootstrapnavtags` to your `INSTALLED_APPS`:
         'bootstrapnavtags',
         ...
     )
+
+Enable the `django.core.context_processors.request`:
+
+    TEMPLATE_CONTEXT_PROCESSORS += (
+        'django.core.context_processors.request',
+    )
