@@ -1,5 +1,5 @@
 from django import template
-from django.core.urlresolvers import NoReverseMatch
+from django.core.urlresolvers import NoReverseMatch, reverse
 from django.template.base import kwarg_re, TemplateSyntaxError
 from django.utils.encoding import smart_text
 
@@ -63,5 +63,7 @@ class NavItemNode(template.Node):
         viewname = self.viewname.resolve(context)
         if not viewname:
             raise NoReverseMatch("'navitem' requires a non-empty second argument.")
+
+        url = reverse(viewname, args=args, kwargs=kwargs, current_app=context.current_app)
 
         return ''
