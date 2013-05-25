@@ -65,6 +65,10 @@ class NavItemNode(template.Node):
             raise NoReverseMatch("'navitem' requires a non-empty second argument.")
 
         url = reverse(viewname, args=args, kwargs=kwargs, current_app=context.current_app)
+
+        path = context['request'].path
         link = '<a href="%s">%s</a>' % (url, label)
 
+        if url in path or url == path:
+            return '<li class="active">%s</li>' % (link)
         return '<li>%s</li>' % (link)
