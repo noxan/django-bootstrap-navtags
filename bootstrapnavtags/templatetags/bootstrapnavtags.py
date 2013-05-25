@@ -26,3 +26,15 @@ def navitem(parser, token):
         raise
 
     bits = bits[3:]
+
+    return NavItemNode(label, viewname, bits)
+
+
+class NavItemNode(template.Node):
+    def __init__(self, label, viewname, args):
+        self.label = label
+        self.viewname = viewname
+        self.args = args
+
+    def render(self, context):
+        return ''
