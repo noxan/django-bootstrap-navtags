@@ -25,3 +25,5 @@ Enable the `django.core.context_processors.request`:
     TEMPLATE_CONTEXT_PROCESSORS += (
         'django.core.context_processors.request',
     )
+
+Default context processors are listed under: https://docs.djangoproject.com/en/dev/ref/settings/#template-context-processors
