@@ -1,4 +1,5 @@
 from django import template
+from django.core.urlresolvers import NoReverseMatch
 from django.template.base import TemplateSyntaxError
 
 
@@ -37,4 +38,12 @@ class NavItemNode(template.Node):
         self.args = args
 
     def render(self, context):
+        label = self.label.resolve(context)
+        if not label:
+            raise NoReverseMatch("'navitem' requires a non-empty first argument.")
+
+        viewname = self.viewname.resolve(context)
+        if not viewname:
+            raise NoReverseMatch("'navitem' requires a non-empty second argument.")
+
         return ''
