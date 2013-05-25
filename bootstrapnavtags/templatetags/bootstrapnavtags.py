@@ -1,6 +1,6 @@
 from django import template
 from django.core.urlresolvers import NoReverseMatch
-from django.template.base import TemplateSyntaxError
+from django.template.base import kwarg_re, TemplateSyntaxError
 
 
 register = template.Library()
@@ -28,14 +28,28 @@ def navitem(parser, token):
 
     bits = bits[3:]
 
-    return NavItemNode(label, viewname, bits)
+    args = []
+    kwargs = {}
+    if len(bits):
+        for bit in bits:
+            match = kwarg_re.match(bit)
+            if not match:
+                raise TemplateSyntaxError("Malformed arguments to url tag")
+            name, value = match.groups()
+            if name:
+                kwargs[name] = parser.compile_filter(value)
+            else:
+                args.append(parser.compile_filter(value))
+
+    return NavItemNode(label, viewname, args, kwargs)
 
 
 class NavItemNode(template.Node):
-    def __init__(self, label, viewname, args):
+    def __init__(self, label, viewname, args, kwargs):
         self.label = label
         self.viewname = viewname
         self.args = args
+        self.kwargs = kwargs
 
     def render(self, context):
         label = self.label.resolve(context)
