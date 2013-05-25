@@ -1,6 +1,7 @@
 from django import template
 from django.core.urlresolvers import NoReverseMatch
 from django.template.base import kwarg_re, TemplateSyntaxError
+from django.utils.encoding import smart_text
 
 
 register = template.Library()
@@ -52,6 +53,9 @@ class NavItemNode(template.Node):
         self.kwargs = kwargs
 
     def render(self, context):
+        args = [arg.resolve(context) for arg in self.args]
+        kwargs = dict([(smart_text(k, 'ascii'), v.resolve(context)) for k, v in self.kwargs.items()])
+
         label = self.label.resolve(context)
         if not label:
             raise NoReverseMatch("'navitem' requires a non-empty first argument.")
