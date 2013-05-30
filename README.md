@@ -34,3 +34,14 @@ Enable the `django.core.context_processors.request` by adding it to your setting
     )
 
 Default settings value of django for context processors can be found at: https://docs.djangoproject.com/en/dev/ref/settings/#template-context-processors
+
+## How to use
+
+First make sure to load the templatetag via `{% load bootstrapnavtags %}` in your template.
+
+Then insert navigation entries into your template as it pleases you:
+
+    <ul class="nav">
+        {% navitem 'Home' 'home' %}
+        {% navitem 'Profile' 'users:profile' %}
+    </ul>
