@@ -13,7 +13,7 @@ def navitem(parser, token):
     template_tag = bits[0]
 
     if len(bits) < 3:
-        raise template.TemplateSyntaxError, "%r tag requires at least two argument" % template_tag
+        raise TemplateSyntaxError("%r tag requires at least two argument" % template_tag)
 
     try:
         label = parser.compile_filter(bits[1])
